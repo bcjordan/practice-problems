@@ -24,23 +24,9 @@ class Traversal
   def self.next_inorder(node)
     return node.right unless node.parent
 
-    if node == node.parent.left
-      if node.right
-        return get_leftmost_child(node.right)
-      else
-        return node.parent
-      end
-    end
+    return get_leftmost_child(node.right) if node.right
 
-    if node == node.parent.right
-      if node.right
-        return get_leftmost_child(node.right)
-      else
-        return nil
-      end
-    end
-
-    fail ArgumentError, 'Invalid tree'
+    node == node.parent.left ? node.parent : nil
   end
 
   private
